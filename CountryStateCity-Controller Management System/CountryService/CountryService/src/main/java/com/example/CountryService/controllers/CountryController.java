@@ -42,8 +42,8 @@ public class CountryController {
     int retryCount = 1;
 
     @GetMapping(value="/getCountries/{id}")
-    //@CircuitBreaker(name="StateBreaker",fallbackMethod = "StateFallback")
-    //@Retry(name="StateBreaker",fallbackMethod = "StateFallback")
+    @CircuitBreaker(name="StateBreaker",fallbackMethod = "StateFallback")
+    @Retry(name="StateBreaker",fallbackMethod = "StateFallback")
     @RateLimiter(name = "StateBreaker",fallbackMethod = "StateFallback")
     public ResponseEntity<Country> getCountryById(@PathVariable("id") int countryId) {
 
